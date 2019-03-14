@@ -34,14 +34,9 @@ view : Model -> Html Msg
 view model =
   div []
     [ text "Progress"
-    , input [ value (String.fromInt model.timer)] []
+    , progress [ value (String.fromInt model.timer), Html.Attributes.max "100"] []
+    , input [ type_ "range", Html.Attributes.min "100", Html.Attributes.max "1000", step "100", onInput ChangeSelection] []
     , button [ onClick ClickReset ] [ text "Reset" ]
-    , select [onInput ChangeSelection]
-        [ option [value "100"] [text "100"]
-        , option [value "200"] [text "200"]
-        , option [value "500"] [text "500"]
-        , option [value "999"] [text "999"]
-        ]
     , button [ onClick ClickToggle ] [ text "Toggle" ]
     ]
 
